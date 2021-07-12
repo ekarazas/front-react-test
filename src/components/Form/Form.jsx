@@ -4,10 +4,10 @@ import * as S from "./Form.style";
 import Button from "../Button/Button";
 import AlignButton from "../AlignButton/AlignButton";
 
-const Form = ({ form_type }) => {
+const Form = ({ form_type, userValidation }) => {
   return (
     <>
-      <S.Form>
+      <S.Form onSubmit={userValidation}>
         <S.Input
           type="email"
           name="email"
@@ -25,7 +25,9 @@ const Form = ({ form_type }) => {
           required
         />
         <AlignButton>
-          <Button color="primary">{form_type}</Button>
+          <Button color="primary" type="submit">
+            {form_type}
+          </Button>
         </AlignButton>
       </S.Form>
     </>
@@ -33,7 +35,8 @@ const Form = ({ form_type }) => {
 };
 
 Form.propTypes = {
-  form_type: PropTypes.oneOf(["Login", "Register"]).isRequired,
+  form_type: PropTypes.oneOf(["login", "register"]).isRequired,
+  userValidation: PropTypes.func,
 };
 
 export default Form;

@@ -8,6 +8,7 @@ export const Button = styled.button`
   cursor: pointer;
   padding: 0.6rem 1.2rem;
   font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
 
   &:hover {
     background: ${(props) =>

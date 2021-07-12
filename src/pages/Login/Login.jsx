@@ -1,14 +1,52 @@
 import React from "react";
+import * as Yup from "yup";
 
-import Button from "../../components/Button/Button";
 import Container from "../../components/Container/Container";
+import PageTitle from "../../components/PageTitle/PageTitle";
+import Form from "../../components/Form/Form";
 
 const Login = () => {
+  const userValidation = (e) => {
+    e.preventDefault();
+    const email = e.target.elements.email.value.trim();
+    const password = e.target.elements.password.value.trim();
+
+    if (email && password) {
+      const schema = Yup.object().shape({
+        email: Yup.string().email().min(5).max(255).required(),
+        password: Yup.string().min(6).max(255).required(),
+      });
+
+      schema.isValid({ email, password }).then((data) => {
+        if (data) {
+          fetchUserData(email, password);
+        } else alert("Bad email or password");
+      });
+    } else {
+      alert("Please write in email and password");
+    }
+  };
+
+  const fetchUserData = (email, password) => {
+    fetch("http://localhost:8080/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("token", data.token);
+      });
+  };
+
   return (
     <>
       <Container>
-        <h1>Hello Login</h1>
-        <Button color="primary">Labas</Button>
+        <PageTitle>Login</PageTitle>
+        <Form userValidation={userValidation} form_type="login" />
       </Container>
     </>
   );

@@ -6,4 +6,4 @@ export default {
   component: Form,
 };
 
-export const FormStories = () => <Form form_type="Login" />;
+export const FormStories = () => <Form form_type="login" />;

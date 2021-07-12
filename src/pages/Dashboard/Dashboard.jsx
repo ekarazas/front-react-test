@@ -1,7 +1,16 @@
 import React from "react";
 
+import Container from "../../components/Container/Container";
+import PageTitle from "../../components/PageTitle/PageTitle";
+
 const Dashboard = () => {
-  return <h1>Hello react</h1>;
+  return (
+    <>
+      <Container>
+        <PageTitle>Dashboard</PageTitle>
+      </Container>
+    </>
+  );
 };
 
 export default Dashboard;
