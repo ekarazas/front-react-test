@@ -12,7 +12,7 @@ export const Nav = styled.nav`
   text-align: center;
 
   @media only screen and (min-width: 375px) {
-    max-width: 50%;
+    max-width: 785px;
     text-align: right;
   }
 `;

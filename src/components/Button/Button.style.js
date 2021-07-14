@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  background: ${(props) => (props.color === "primary" ? "#198bd2" : "#938d5a")};
+  background: ${(props) => (props.color === "primary" ? "#198bd2" : "#dd2e2e")};
   border: 0;
   border-radius: 0.2rem;
   color: #fff;
@@ -12,6 +12,6 @@ export const Button = styled.button`
 
   &:hover {
     background: ${(props) =>
-      props.color === "primary" ? "#1b70a5" : "#7c7646"};
+      props.color === "primary" ? "#1b70a5" : "#9d1e1e"};
   }
 `;
