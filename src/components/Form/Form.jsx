@@ -8,6 +8,16 @@ const Form = ({ form_type, userValidation }) => {
   return (
     <>
       <S.Form onSubmit={userValidation}>
+        {form_type === "register" && (
+          <S.Input
+            type="text"
+            name="name"
+            minLength="2"
+            maxLength="255"
+            placeholder="First Name"
+            required
+          ></S.Input>
+        )}
         <S.Input
           type="email"
           name="email"

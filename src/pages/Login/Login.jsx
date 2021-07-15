@@ -1,11 +1,14 @@
 import React from "react";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 
 import Container from "../../components/Container/Container";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import Form from "../../components/Form/Form";
 
 const Login = () => {
+  const history = useHistory();
+
   const userValidation = (e) => {
     e.preventDefault();
     const email = e.target.elements.email.value.trim();
@@ -20,10 +23,10 @@ const Login = () => {
       schema.isValid({ email, password }).then((data) => {
         if (data) {
           fetchUserData(email, password);
-        } else alert("Bad email or password");
+        } else alert("This data is not valid");
       });
     } else {
-      alert("Please write in email and password");
+      alert("Do not leave blank inputs. Write your email and password");
     }
   };
 
@@ -37,9 +40,14 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        localStorage.setItem("token", data.token);
-      });
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          history.push("/dashboard");
+        } else {
+          alert(data.error);
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

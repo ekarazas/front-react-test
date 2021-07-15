@@ -10,7 +10,7 @@ export const CardStory = () => {
   return (
     <Card
       image="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png"
-      score="1"
+      score={1}
     />
   );
 };
