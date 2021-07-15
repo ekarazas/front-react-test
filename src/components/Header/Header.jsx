@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { LoggedInContext } from "../../contexts/loggedInContext";
 import * as S from "./Header.style";
 
 const Header = () => {
+  const loggedInContext = useContext(LoggedInContext);
+
   const logOut = () => {
+    loggedInContext.setLoggedIn(false);
     localStorage.removeItem("token");
   };
 
-  if (localStorage.getItem("token")) {
+  if (loggedInContext.loggedIn) {
     return (
       <S.Header>
         <S.Nav>

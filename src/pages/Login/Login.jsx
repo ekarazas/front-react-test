@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
+import { LoggedInContext } from "../../contexts/loggedInContext";
 
 import Container from "../../components/Container/Container";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import Form from "../../components/Form/Form";
 
 const Login = () => {
+  const loggedInContext = useContext(LoggedInContext);
   const history = useHistory();
 
   const userValidation = (e) => {
@@ -42,6 +44,7 @@ const Login = () => {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
+          loggedInContext.setLoggedIn(true);
           history.push("/dashboard");
         } else {
           alert(data.error);
